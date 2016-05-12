@@ -17,4 +17,5 @@ module Daimon
   end
 end
 
+require "daimon/markdown/plugin/base"
 require "daimon/markdown/plugin/toc"
