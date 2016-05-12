@@ -1,3 +1,5 @@
+require "html/pipeline"
+
 require "daimon/markdown/filter"
 require "daimon/markdown/plugin"
 
@@ -6,6 +8,7 @@ module Daimon
     class Processor
 
       DEFAULT_FILTERS = [
+        Daimon::Markdown::Filter::Redcarpet,
         Daimon::Markdown::Filter::Plugin
       ]
 

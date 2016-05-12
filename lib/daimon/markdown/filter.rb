@@ -5,4 +5,5 @@ module Daimon
   end
 end
 
+require "daimon/markdown/filter/redcarpet"
 require "daimon/markdown/filter/plugin"
