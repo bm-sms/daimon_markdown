@@ -52,3 +52,7 @@ Style/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
 Style/BlockDelimiters:
   EnforcedStyle: braces_for_chaining
+Style/PercentQLiterals:
+  Enabled: false
+Style/UnneededPercentQ:
+  Enabled: false
