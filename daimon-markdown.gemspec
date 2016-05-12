@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency "html-pipeline"
   spec.add_runtime_dependency "redcarpet"
-  spec.add_runtime_dependency "rogue"
+  spec.add_runtime_dependency "rouge"
 
   spec.add_development_dependency "bundler", ">= 1.12"
   spec.add_development_dependency "rake", "~> 11.0"
