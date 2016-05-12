@@ -9,7 +9,9 @@ module Daimon
           items = []
 
           headers = Hash.new(0)
+          previous_level = 1
           doc.css("h1, h2, h3, h4, h5, h6").each do |header_node|
+            level = header_node.name.tr("h", "").to_i
             text = header_node.text
             id = text.downcase
             id.gsub!(/ /, "-")
@@ -24,9 +26,17 @@ module Daimon
             header_content = header_node.children.first
             # TODO: Arrange indent level
             if header_content
+              diff = level - previous_level
+              case
+              when diff > 0
+                items << "<ul>" * diff
+              when diff < 0
+                items << "</ul>" * diff.abs
+              end
               items << list_item(link_to(unique_id, text))
               header_node["id"] = unique_id
             end
+            previous_level = level
           end
           toc_class = context[:toc_class] || "section-nav"
           unless items.empty?
