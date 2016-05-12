@@ -18,5 +18,6 @@ module Daimon
 end
 
 require "daimon/markdown/plugin/base"
-require "daimon/markdown/plugin/figure"
-require "daimon/markdown/plugin/toc"
+Dir.glob("#{__dir__}/plugin/*.rb") do |entry|
+  require entry
+end
