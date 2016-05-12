@@ -22,6 +22,12 @@ Or install it yourself as:
 
 TODO: Write usage instructions here
 
+```ruby
+processor = Daimon::Markdown::Processor.new
+result = processor.call(input)
+puts result[:output].to_s
+```
+
 ## Development
 
 TODO
