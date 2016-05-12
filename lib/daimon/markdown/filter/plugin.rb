@@ -7,12 +7,11 @@ module Daimon
         def call
           doc.search(".//text()").each do |node|
             node.to_s.scan(/{{(.+?)}}/) do |str|
-              parser = Daimon::Markdown::Parser.new(str)
+              parser = Daimon::Markdown::Parser.new(str[0])
               parser.parse
               plugin_class = Daimon::Markdown::Plugin.lookup(parser.name)
-              plugin = plugin_class.new
-              # TODO: Remove <p></p>
-              node.replace(plugin.call(*parser.args))
+              plugin = plugin_class.new(doc, node, result, context)
+              plugin.call(*parser.args)
             end
           end
           doc
