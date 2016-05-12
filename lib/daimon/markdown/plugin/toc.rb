@@ -5,7 +5,8 @@ module Daimon
         Plugin.register("toc", self)
 
         def call
-          toc_html = []
+          toc_html = ""
+          items = []
 
           headers = Hash.new(0)
           doc.css("h1, h2, h3, h4, h5, h6").each do |header_node|
@@ -23,15 +24,25 @@ module Daimon
             header_content = header_node.children.first
             # TODO: Arrange indent level
             if header_content
-              toc_html << %Q(<li><a href="##{unique_id}">#{text}</a></li>)
+              items << list_item(link_to(unique_id, text))
               header_node["id"] = unique_id
             end
           end
           toc_class = context[:toc_class] || "section-nav"
-          unless toc_html.empty?
-            toc_html = %Q(<ul class="#{toc_class}">\n#{toc_html.join("\n")}\n</ul>)
+          unless items.empty?
+            toc_html = %Q(<ul class="#{toc_class}">\n#{items.join("\n")}\n</ul>)
           end
           node.parent.replace(toc_html)
+        end
+
+        private
+
+        def link_to(href, text)
+          %Q(<a href="##{href}">#{text}</a>)
+        end
+
+        def list_item(content)
+          %Q(<li>#{content}</li>)
         end
       end
     end
