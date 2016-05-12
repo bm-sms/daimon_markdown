@@ -5,6 +5,7 @@ module Daimon
   end
 end
 
+require "daimon/markdown/processor"
 require "daimon/markdown/filter"
 require "daimon/markdown/parser"
 require "daimon/markdown/plugin"
