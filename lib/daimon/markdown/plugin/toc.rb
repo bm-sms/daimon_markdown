@@ -29,9 +29,9 @@ module Daimon
               diff = level - previous_level
               case
               when diff > 0
-                items << "<ul>" * diff
+                items.concat(["<ul>"] * diff)
               when diff < 0
-                items << "</ul>" * diff.abs
+                items.concat(["</ul>"] * diff.abs)
               end
               items << list_item(link_to(unique_id, text))
               header_node["id"] = unique_id
