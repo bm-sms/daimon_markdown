@@ -8,7 +8,7 @@ module Daimon
           if expression.start_with?("$$")
             node.parent.replace(%Q(<div class="math">#{expression}</div>))
           else
-            node.replace(expression)
+            result[:plugins] << expression
           end
         end
       end

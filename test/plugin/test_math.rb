@@ -2,42 +2,41 @@ require "helper"
 
 class MathTest < Test::Unit::TestCase
   def test_inline_style
-    doc = Nokogiri::HTML.fragment(<<~HTML)
-    <p>{{math("$1+1=2$")}}</p>
+    markdown = <<~TEXT
+    This is math expression: {{math("$1+1=2$")}}
+    TEXT
+    expected = <<~HTML
+    <p>This is math expression: $1+1=2$</p>
     HTML
-    node = doc.search(".//text()").first
-    result = {}
-    context = {}
-    plugin = Daimon::Markdown::Plugin::Math.new(doc, node, result, context)
-    plugin.call("$1+1=2$")
-    expected_html = <<~HTML
-    <p>$1+1=2$</p>
+    processor = Daimon::Markdown::Processor.new
+    result = processor.call(markdown)
+    actual = result[:output].to_s
+    assert_equal(expected, actual)
+  end
+
+  def test_multiple_plugin_syntax_in_one_line
+    markdown = <<~TEXT
+    This is math expression: {{math("$1+1=2$")}} or {{math("$2+2=4$")}}
+    TEXT
+    expected = <<~HTML
+    <p>This is math expression: $1+1=2$ or $2+2=4$</p>
     HTML
-    assert_equal(expected_html, doc.to_s)
+    processor = Daimon::Markdown::Processor.new
+    result = processor.call(markdown)
+    actual = result[:output].to_s
+    assert_equal(expected, actual)
   end
 
   def test_block_style
-    doc = Nokogiri::HTML.fragment(<<~HTML)
-    <p>{{math("$$
+    markdown = <<~TEXT
+    {{math("$$
     1+1=2
     2+2=4
     \\dots
     n+n=2n
-    $$")}}</p>
-    HTML
-    node = doc.search(".//text()").first
-    result = {}
-    context = {}
-    plugin = Daimon::Markdown::Plugin::Math.new(doc, node, result, context)
-    plugin.call(<<~EXPRESSION.chomp)
-    $$
-    1+1=2
-    2+2=4
-    \\dots
-    n+n=2n
-    $$
-    EXPRESSION
-    expected_html = <<~HTML.chomp
+    $$")}}
+    TEXT
+    expected = <<~HTML
     <div class="math">$$
     1+1=2
     2+2=4
@@ -45,6 +44,9 @@ class MathTest < Test::Unit::TestCase
     n+n=2n
     $$</div>
     HTML
-    assert_equal(expected_html, doc.to_s.chomp)
+    processor = Daimon::Markdown::Processor.new
+    result = processor.call(markdown)
+    actual = result[:output].to_s
+    assert_equal(expected, actual)
   end
 end

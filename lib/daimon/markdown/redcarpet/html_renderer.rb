@@ -12,7 +12,7 @@ module Daimon
         end
 
         def preprocess(full_document)
-          full_document.scan(/{{.+?}}/) do |m|
+          full_document.scan(/{{.+?}}/m) do |m|
             @plugins << m
           end
         end
@@ -21,7 +21,7 @@ module Daimon
           document = ""
           scanner = StringScanner.new(full_document)
           loop do
-            if scanner.match?(/{{.+?}}/)
+            if scanner.match?(/{{.+?}}/m)
               document << @plugins.shift
               scanner.pos += scanner.matched_size
             else
