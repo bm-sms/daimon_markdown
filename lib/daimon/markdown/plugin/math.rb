@@ -13,7 +13,8 @@ module Daimon
           <script type="text/x-mathjax-config">
             MathJax.Hub.Config({
               tex2jax: {inlineMath: [['$','$']]},
-              asciimath2jax: {delimiters: [['`', '`']]}
+              asciimath2jax: {delimiters: [['`', '`']]},
+              TeX: {extensions: ["mhchem.js"]}
             });
           </script>
           TAG
