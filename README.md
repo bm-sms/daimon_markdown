@@ -1,6 +1,6 @@
 # Daimon::Markdown
 
-TODO
+Daimon::Markdown is a Markdown processor that has plugin functionality.
 
 ## Installation
 
@@ -28,9 +28,54 @@ result = processor.call(input)
 puts result[:output].to_s
 ```
 
-## Development
+## How to write plugin
 
 TODO
+
+### Bundled plugins
+
+#### toc
+
+Display table of contents.
+
+```
+{{toc}}
+```
+
+#### figure
+
+Display image using figure tag and figcaption tag.
+
+```
+{{figure("image.png", "alt text", "caption text")}}
+```
+
+#### math
+
+Display mathematical expression using [MathJax](https://www.mathjax.org/).
+Use 2 backslashes if you want to use commands start with backslash.
+
+Currently support LaTeX and AsciiMath.
+
+```
+# Inline style
+
+This is a expression {{math("$1 + 1 = 2$")}}. And {{math("$2^10 = 1024$")}} .
+
+# Block style
+
+```
+{{math("$$
+\\begin{aligned}
+\\dot{x} & = \\sigma(y-x) \\\\
+\\dot{y} & = \\rho x - y - xz \\\\
+\\dot{z} & = -\\beta z + xy
+\\end{aligned}
+$$")}}
+```
+
+
+## Development
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
