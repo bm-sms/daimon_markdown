@@ -114,8 +114,7 @@ class TocTest < Test::Unit::TestCase
   private
 
   def assert_toc(expected_toc_html, expected_header_ids, markdown)
-    processor = Daimon::Markdown::Processor.new
-    result = processor.call(markdown)
+    result = process_markdown(markdown)
     actual_toc_html = result[:output].search("ul").first.to_s
     actual_header_ids = result[:output].search("h1, h2, h3, h4, h5, h6").map do |node|
       node["id"]

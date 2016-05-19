@@ -34,8 +34,7 @@ class FigureTest < Test::Unit::TestCase
       <figcaption>caption *text*</figcaption>
     </figure>
     HTML
-    processor = Daimon::Markdown::Processor.new
-    result = processor.call(markdown)
+    result = process_markdown(markdown)
     actual_figure = result[:output].search("figure").first.to_s
     assert_equal(expected_figure, actual_figure)
   end

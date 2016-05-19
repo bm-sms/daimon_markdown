@@ -8,8 +8,7 @@ class MathTest < Test::Unit::TestCase
     expected = <<~HTML
     <p>This is math expression: $1+1=2$</p>
     HTML
-    processor = Daimon::Markdown::Processor.new
-    result = processor.call(markdown)
+    result = process_markdown(markdown)
     actual = result[:output].to_s
     assert_equal(expected, actual)
   end
@@ -21,8 +20,7 @@ class MathTest < Test::Unit::TestCase
     expected = <<~HTML
     <p>This is math expression: $1+1=2$ or $2+2=4$</p>
     HTML
-    processor = Daimon::Markdown::Processor.new
-    result = processor.call(markdown)
+    result = process_markdown(markdown)
     actual = result[:output].to_s
     assert_equal(expected, actual)
   end
@@ -44,8 +42,7 @@ class MathTest < Test::Unit::TestCase
     n+n=2n
     $$</div>
     HTML
-    processor = Daimon::Markdown::Processor.new
-    result = processor.call(markdown)
+    result = process_markdown(markdown)
     actual = result[:output].to_s
     assert_equal(expected, actual)
   end
