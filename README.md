@@ -57,14 +57,13 @@ Use 2 backslashes if you want to use commands start with backslash.
 
 Currently support LaTeX and AsciiMath.
 
-```
+```text
 # Inline style
 
 This is a expression {{math("$1 + 1 = 2$")}}. And {{math("$2^10 = 1024$")}} .
 
 # Block style
 
-```
 {{math("$$
 \\begin{aligned}
 \\dot{x} & = \\sigma(y-x) \\\\
