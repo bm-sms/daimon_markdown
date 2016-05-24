@@ -14,9 +14,8 @@ module Daimon
         private
 
         def markdown
-          renderer = Daimon::Markdown::Redcarpet::HTMLRenderer.new(hard_wrap: true)
           @markdown ||= ::Redcarpet::Markdown.new(
-            renderer,
+            Daimon::Markdown::Redcarpet::HTMLRenderer.new(hard_wrap: true),
             fenced_code_blocks: true,
             tables: true)
         end
