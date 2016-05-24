@@ -6,8 +6,8 @@ require 'daimon/markdown/version'
 Gem::Specification.new do |spec|
   spec.name          = "daimon-markdown"
   spec.version       = Daimon::Markdown::VERSION
-  spec.authors       = ["Kenji Okimoto"]
-  spec.email         = ["okimoto@clear-code.com"]
+  spec.authors       = ["daimon developers"]
+  spec.email         = [""]
 
   spec.summary       = %q{Markdown renderer for Daimon}
   spec.description   = %q{Markdown renderer for Daimon}
