@@ -5,7 +5,7 @@ module Daimon
         Plugin.register("math", self)
 
         def self.script_tag
-          <<~TAG
+          tag = <<~TAG
           <script type="text/javascript"
                   async
                   src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-MML-AM_CHTML">
@@ -18,6 +18,11 @@ module Daimon
             });
           </script>
           TAG
+          if defined?(ActiveSupport)
+            ActiveSupport::SafeBuffer.new(tag)
+          else
+            tag
+          end
         end
 
         def call(expression)
