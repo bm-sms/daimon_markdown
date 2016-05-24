@@ -18,8 +18,8 @@ module Daimon
             });
           </script>
           TAG
-          if defined?(ActiveSupport)
-            ActiveSupport::SafeBuffer.new(tag)
+          if tag.respond_to?(:html_safe)
+            tag.html_safe
           else
             tag
           end
