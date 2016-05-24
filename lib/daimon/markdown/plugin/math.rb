@@ -6,16 +6,16 @@ module Daimon
 
         def self.script_tag
           tag = <<~TAG
-          <script type="text/javascript"
-                  async
-                  src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-MML-AM_CHTML">
-          </script>
           <script type="text/x-mathjax-config">
             MathJax.Hub.Config({
               tex2jax: {inlineMath: [['$','$']]},
               asciimath2jax: {delimiters: [['`', '`']]},
               TeX: {extensions: ["mhchem.js"]}
             });
+          </script>
+          <script type="text/javascript"
+                  async
+                  src="https://cdn.mathjax.org/mathjax/2.6-latest/MathJax.js?config=TeX-MML-AM_CHTML">
           </script>
           TAG
           if tag.respond_to?(:html_safe)
