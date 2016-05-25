@@ -65,11 +65,11 @@ This is a expression {{math("$1 + 1 = 2$")}}. And {{math("$2^10 = 1024$")}} .
 # Block style
 
 {{math("$$
-\\begin{aligned}
-\\dot{x} & = \\sigma(y-x) \\\\
-\\dot{y} & = \\rho x - y - xz \\\\
-\\dot{z} & = -\\beta z + xy
-\\end{aligned}
+\begin{aligned}
+\dot{x} & = \sigma(y-x) \\
+\dot{y} & = \rho x - y - xz \\
+\dot{z} & = -\beta z + xy
+\end{aligned}
 $$")}}
 ```
 
