@@ -60,7 +60,7 @@ Currently support LaTeX and AsciiMath.
 ```text
 # Inline style
 
-This is a expression {{math("$1 + 1 = 2$")}}. And {{math("$2^10 = 1024$")}} .
+This is a expression {{math("$1 + 1 = 2$")}}. And {{math("$2^{10} = 1024$")}} .
 
 # Block style
 
