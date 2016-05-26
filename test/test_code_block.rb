@@ -84,4 +84,23 @@ class CodeBlockTest < Test::Unit::TestCase
     HTML
     assert_equal(expected, result[:output].to_s)
   end
+
+  def test_html_comment
+    markdown = <<~TEXT
+    # hi
+
+    <!-- {{math("$1+1=2$")}} -->
+
+    {{math("$1+1=2$")}}
+    TEXT
+    result = process_markdown(markdown)
+    expected = <<~HTML
+    <h1>hi</h1>
+
+    <!-- {{math("$1+1=2$")}} -->
+
+    <p>$1+1=2$</p>
+    HTML
+    assert_equal(expected, result[:output].to_s)
+  end
 end
