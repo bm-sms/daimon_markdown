@@ -6,6 +6,7 @@ module Daimon
       class Plugin < ::HTML::Pipeline::Filter
         def call
           doc.search(".//text()").each do |node|
+            next if node.parent.name == "code" # skip code block
             result[:plugins] = []
             node.to_s.scan(/{{(.+?)}}/m) do |str|
               parser = Daimon::Markdown::Parser.new(str[0])
