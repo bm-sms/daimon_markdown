@@ -5,6 +5,10 @@ class HTMLRendererTest < Test::Unit::TestCase
     "header" => {
       input: %Q(# hi),
       expect: %Q(<h1>hi</h1>\n)
+    },
+    "empty text" => {
+      input: "",
+      expect: ""
     }
   )
   def test_renderer(data)

@@ -21,13 +21,13 @@ module Daimon
           document = ""
           scanner = StringScanner.new(full_document)
           loop do
+            break if scanner.eos?
             if scanner.match?(/{{.+?}}/m)
               document << @plugins.shift
               scanner.pos += scanner.matched_size
             else
               document << scanner.getch
             end
-            break if scanner.eos?
           end
           document
         end
