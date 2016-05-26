@@ -1,3 +1,4 @@
+require "rouge"
 require "rouge/plugins/redcarpet"
 
 module Daimon
