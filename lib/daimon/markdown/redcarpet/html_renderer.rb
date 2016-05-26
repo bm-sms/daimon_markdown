@@ -16,13 +16,6 @@ module Daimon
           scanner = StringScanner.new(full_document)
           loop do
             break if scanner.eos?
-            if scanner.match?(/^```.*$/)
-              scanner.pos += scanner.matched_size
-              scanner.scan_until(/^```.*$/)
-            end
-            if scanner.match?(/^ {4}.*$/)
-              scanner.pos += scanner.matched_size
-            end
             if scanner.match?(/{{.+?}}/m)
               @plugins << scanner.matched
               scanner.pos += scanner.matched_size
@@ -39,10 +32,6 @@ module Daimon
           scanner = StringScanner.new(full_document)
           loop do
             break if scanner.eos?
-            if scanner.match?(%r{<pre class=".+"><code>.+</code></pre>}m)
-              document << scanner.matched
-              scanner.pos += scanner.matched_size
-            end
             if scanner.match?(/{{.+?}}/m)
               document << @plugins.shift
               scanner.pos += scanner.matched_size
