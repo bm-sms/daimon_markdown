@@ -29,6 +29,8 @@ Style/FrozenStringLiteralComment:
   Enabled: false
 Style/StringLiterals:
   EnforcedStyle: double_quotes
+Style/IfUnlessModifier:
+  Enabled: false
 Style/TrailingCommaInLiteral:
   Enabled: false
 Style/TrailingCommaInArguments:

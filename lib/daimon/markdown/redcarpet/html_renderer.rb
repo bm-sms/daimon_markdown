@@ -1,3 +1,4 @@
+require "rouge"
 require "rouge/plugins/redcarpet"
 
 module Daimon
@@ -12,12 +13,21 @@ module Daimon
         end
 
         def preprocess(full_document)
-          full_document.scan(/{{.+?}}/m) do |m|
-            @plugins << m
+          scanner = StringScanner.new(full_document)
+          loop do
+            break if scanner.eos?
+            if scanner.match?(/{{.+?}}/m)
+              @plugins << scanner.matched
+              scanner.pos += scanner.matched_size
+            else
+              scanner.getch
+            end
           end
+          full_document
         end
 
         def postprocess(full_document)
+          return full_document if @plugins.empty?
           document = ""
           scanner = StringScanner.new(full_document)
           loop do
