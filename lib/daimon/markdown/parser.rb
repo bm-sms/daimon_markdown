@@ -4,6 +4,9 @@ module Daimon
   module Markdown
     class Parser < Ripper
 
+      class Error < StandardError
+      end
+
       KEYWORDS = {
         "nil" => nil,
         "true" => true,
@@ -82,6 +85,16 @@ module Daimon
       def on_rbracket(*args)
         @arrays[@level - 1] << @arrays[@level]
         @level -= 1
+      end
+
+      def on_parse_error(message)
+        compile_error(message)
+      end
+
+      private
+
+      def compile_error(message)
+        raise Error, message
       end
     end
   end
