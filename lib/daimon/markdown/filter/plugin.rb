@@ -16,7 +16,7 @@ module Daimon
                 plugin = plugin_class.new(doc, node, result, context)
                 plugin.call(*parser.args)
               rescue Daimon::Markdown::Parser::Error => ex
-                message = "#{node.to_s} (#{ex.class}: #{ex.message})"
+                message = "#{node} (#{ex.class}: #{ex.message})"
                 node.replace(message)
               rescue Daimon::Markdown::Plugin::UnknownPluginError => ex
                 node.replace(ex.message)
