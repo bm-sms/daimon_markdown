@@ -4,9 +4,14 @@ module Daimon
 
       PLUGIN_REGISTRY = {}
 
+      class UnknownPluginError < StandardError
+      end
+
       class << self
         def lookup(name)
           PLUGIN_REGISTRY.fetch(name)
+        rescue KeyError
+          raise UnknownPluginError, "Unknown plugin: #{name}"
         end
 
         def register(name, klass)

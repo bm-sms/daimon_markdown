@@ -9,11 +9,18 @@ module Daimon
             next if node.parent.name == "code" # skip code block
             result[:plugins] = []
             node.to_s.scan(/{{(.+?)}}/m) do |str|
-              parser = Daimon::Markdown::Parser.new(str[0])
-              parser.parse
-              plugin_class = Daimon::Markdown::Plugin.lookup(parser.name)
-              plugin = plugin_class.new(doc, node, result, context)
-              plugin.call(*parser.args)
+              begin
+                parser = Daimon::Markdown::Parser.new(str[0])
+                parser.parse
+                plugin_class = Daimon::Markdown::Plugin.lookup(parser.name)
+                plugin = plugin_class.new(doc, node, result, context)
+                plugin.call(*parser.args)
+              rescue Daimon::Markdown::Parser::Error => ex
+                message = "#{node} (#{ex.class}: #{ex.message})"
+                node.replace(message)
+              rescue Daimon::Markdown::Plugin::UnknownPluginError => ex
+                node.replace(ex.message)
+              end
             end
             unless result[:plugins].empty?
               scanner = StringScanner.new(node.to_s)
