@@ -16,7 +16,6 @@ class CodeBlockTest < Test::Unit::TestCase
     <h1>hi</h1>
     <pre class="highlight plaintext"><code>{{math("$1+1=2$")}}
     </code></pre>
-
     <p>$1+1=2$</p>
     HTML
     assert_equal(expected, result[:output].to_s)
@@ -36,7 +35,6 @@ class CodeBlockTest < Test::Unit::TestCase
     <h1>hi</h1>
     <pre class="highlight plaintext"><code>This is math expression.\n{{math("$1+1=2$")}}
     </code></pre>
-
     <p>$1+1=2$</p>
     HTML
     assert_equal(expected, result[:output].to_s)
@@ -58,7 +56,6 @@ class CodeBlockTest < Test::Unit::TestCase
     <h1>hi</h1>
     <pre class="highlight plaintext"><code>This is math expression.\n{{math("$1+1=2$")}}
     </code></pre>
-
     <p>$1+1=2$</p>
 
     <p>$2+2=4$</p>
