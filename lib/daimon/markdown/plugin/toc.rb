@@ -4,7 +4,7 @@ module Daimon
       class TableOfContents < Base
         Plugin.register("toc", self)
 
-        def call
+        def call(limit = nil)
           toc_html = ""
           items = []
 
@@ -12,6 +12,7 @@ module Daimon
           previous_level = 1
           doc.css("h1, h2, h3, h4, h5, h6").each do |header_node|
             level = header_node.name.tr("h", "").to_i
+            next if limit && limit < level
             text = header_node.text
             id = text.downcase
             id.gsub!(/ /, "-")
