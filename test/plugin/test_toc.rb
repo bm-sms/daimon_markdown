@@ -111,6 +111,39 @@ class TocTest < Test::Unit::TestCase
     assert_toc(expected_toc_html, expected_header_ids, markdown)
   end
 
+  def test_limit
+    markdown = <<~TEXT
+
+    {{toc(2)}}
+    
+    # title
+
+    This is a text
+
+    ## title 2
+
+    ### title 3
+    
+    This is a text
+
+    # title 1
+
+    This is a text
+    TEXT
+    
+    expected_toc_html = <<~HTML.chomp
+    <ul class="section-nav">
+    <li><a href="#title">title</a></li>
+    <ul>
+    <li><a href="#title-2">title 2</a></li>
+    </ul>
+    <li><a href="#title-1">title 1</a></li>
+    </ul>
+    HTML
+    expected_header_ids = ["title", "title-2", "title-1"]
+    assert_toc(expected_toc_html, expected_header_ids, markdown)
+  end
+
   private
 
   def assert_toc(expected_toc_html, expected_header_ids, markdown)
@@ -118,7 +151,7 @@ class TocTest < Test::Unit::TestCase
     actual_toc_html = result[:output].search("ul").first.to_s
     actual_header_ids = result[:output].search("h1, h2, h3, h4, h5, h6").map do |node|
       node["id"]
-    end
+    end.compact
     assert_equal(expected_toc_html, actual_toc_html)
     assert_equal(expected_header_ids, actual_header_ids)
   end
