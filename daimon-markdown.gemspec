@@ -29,4 +29,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 11.0"
   spec.add_development_dependency "test-unit", "> 3"
   spec.add_development_dependency "test-unit-notify"
+  spec.add_development_dependency "rubocop"
+  spec.add_development_dependency "daimon-deka"
 end
