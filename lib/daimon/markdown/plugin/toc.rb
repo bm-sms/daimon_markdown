@@ -40,8 +40,9 @@ module Daimon
             previous_level = level
           end
           toc_class = context[:toc_class] || "section-nav"
+          toc_header = context[:toc_header] || ""
           unless items.empty?
-            toc_html = %Q(<ul class="#{toc_class}">\n#{items.join("\n")}\n</ul>)
+            toc_html = %Q(#{toc_header}<ul class="#{toc_class}">\n#{items.join("\n")}\n</ul>)
           end
           node.parent.replace(toc_html)
         end
