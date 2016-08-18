@@ -149,9 +149,7 @@ class TocTest < Test::Unit::TestCase
   def assert_toc(expected_toc_html, expected_header_ids, markdown)
     result = process_markdown(markdown)
     actual_toc_html = result[:output].search("ul").first.to_s
-    actual_header_ids = result[:output].search("h1, h2, h3, h4, h5, h6").map do |node|
-      node["id"]
-    end.compact
+    actual_header_ids = result[:output].search("h1, h2, h3, h4, h5, h6").map {|node| node["id"] }.compact
     assert_equal(expected_toc_html, actual_toc_html)
     assert_equal(expected_header_ids, actual_header_ids)
   end
