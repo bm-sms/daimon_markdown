@@ -3,7 +3,7 @@ require "test/unit/notify"
 
 require "daimon/markdown"
 
-def process_markdown(markdown)
+def process_markdown(markdown, context = {})
   processor = Daimon::Markdown::Processor.new
-  processor.call(markdown)
+  processor.call(markdown, context)
 end
