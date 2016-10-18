@@ -6,6 +6,8 @@ DaimonMarkdown is a Markdown processor that has plugin functionality.
 
 Add this line to your application's Gemfile:
 
+**NOTICE** `daimon_markdown` has been renamed from `daimon-markdown` since v0.6.0.
+
 ```ruby
 gem 'daimon_markdown'
 ```
