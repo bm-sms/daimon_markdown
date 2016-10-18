@@ -48,7 +48,7 @@ class ParserTest < Test::Unit::TestCase
     str = data[:str]
     name = data[:name]
     args = data[:args]
-    parser = Daimon::Markdown::Parser.new(str)
+    parser = DaimonMarkdown::Parser.new(str)
     parser.parse
     assert_equal(name, parser.name)
     assert_equal(args, parser.args)
@@ -56,8 +56,8 @@ class ParserTest < Test::Unit::TestCase
 
   def test_parse_error
     str = %Q(foo("))
-    parser = Daimon::Markdown::Parser.new(str)
-    assert_raise(Daimon::Markdown::Parser::Error) do
+    parser = DaimonMarkdown::Parser.new(str)
+    assert_raise(DaimonMarkdown::Parser::Error) do
       parser.parse
     end
   end

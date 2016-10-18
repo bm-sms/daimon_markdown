@@ -8,7 +8,7 @@ class FigureTest < Test::Unit::TestCase
     node = doc.search(".//text()").first
     result = {}
     context = {}
-    plugin = Daimon::Markdown::Plugin::Figure.new(doc, node, result, context)
+    plugin = DaimonMarkdown::Plugin::Figure.new(doc, node, result, context)
     plugin.call("a.png", "alt text", "caption text")
     expected_html = <<~HTML
     <figure>

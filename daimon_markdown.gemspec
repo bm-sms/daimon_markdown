@@ -1,17 +1,17 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'daimon/markdown/version'
+require 'daimon_markdown/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "daimon-markdown"
-  spec.version       = Daimon::Markdown::VERSION
+  spec.name          = "daimon_markdown"
+  spec.version       = DaimonMarkdown::VERSION
   spec.authors       = ["daimon developers"]
   spec.email         = [""]
 
   spec.summary       = %q{Markdown renderer for Daimon}
   spec.description   = %q{Markdown renderer for Daimon}
-  spec.homepage      = "https://github.com/bm-sms/daimon-markdown"
+  spec.homepage      = "https://github.com/bm-sms/daimon_markdown"
   spec.license       = "MIT"
 
   spec.required_ruby_version = ">= 2.3.0"

@@ -1,13 +1,13 @@
-# Daimon::Markdown
+# DaimonMarkdown
 
-Daimon::Markdown is a Markdown processor that has plugin functionality.
+DaimonMarkdown is a Markdown processor that has plugin functionality.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'daimon-markdown'
+gem 'daimon_markdown'
 ```
 
 And then execute:
@@ -16,14 +16,14 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install daimon-markdown
+    $ gem install daimon_markdown
 
 ## Usage
 
 TODO: Write usage instructions here
 
 ```ruby
-processor = Daimon::Markdown::Processor.new
+processor = DaimonMarkdown::Processor.new
 result = processor.call(input)
 puts result[:output].to_s
 ```
@@ -80,7 +80,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/bm-sms/daimon-markdown.
+Bug reports and pull requests are welcome on GitHub at https://github.com/bm-sms/daimon_markdown.
 
 
 ## License
