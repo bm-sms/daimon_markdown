@@ -81,9 +81,11 @@ class TocTest < Test::Unit::TestCase
     <ul class="section-nav">
     <li><a href="#title">title</a></li>
     <ul>
+    <li>
     <ul>
     <li><a href="#title-3">title 3</a></li>
     </ul>
+    </li>
     </ul>
     <li><a href="#title-1">title 1</a></li>
     </ul>
