@@ -1,5 +1,6 @@
 require "test-unit"
 require "test/unit/notify"
+require "pp"
 
 require "daimon_markdown"
 
