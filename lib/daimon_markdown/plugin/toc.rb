@@ -119,8 +119,8 @@ module DaimonMarkdown
       class ListItem
         attr_reader :items
 
-        def initialize(header: nil)
-          @header = header || EmptyHeader.new
+        def initialize(header: EmptyHeader.new)
+          @header = header
           @items = []
         end
 
