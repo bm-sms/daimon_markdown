@@ -47,11 +47,13 @@ class TocTest < Test::Unit::TestCase
     
     expected_toc_html = <<~HTML.chomp
     <ul class="section-nav">
-    <li><a href="#title">title</a></li>
+    <li>
+    <a href="#title">title</a>
     <ul>
     <li><a href="#title-2">title 2</a></li>
     <li><a href="#title-2-1">title 2</a></li>
     </ul>
+    </li>
     <li><a href="#title-1">title 1</a></li>
     </ul>
     HTML
@@ -79,7 +81,8 @@ class TocTest < Test::Unit::TestCase
     
     expected_toc_html = <<~HTML.chomp
     <ul class="section-nav">
-    <li><a href="#title">title</a></li>
+    <li>
+    <a href="#title">title</a>
     <ul>
     <li>
     <ul>
@@ -87,6 +90,7 @@ class TocTest < Test::Unit::TestCase
     </ul>
     </li>
     </ul>
+    </li>
     <li><a href="#title-1">title 1</a></li>
     </ul>
     HTML
@@ -132,13 +136,15 @@ class TocTest < Test::Unit::TestCase
 
     This is a text
     TEXT
-    
+
     expected_toc_html = <<~HTML.chomp
     <ul class="section-nav">
-    <li><a href="#title">title</a></li>
+    <li>
+    <a href="#title">title</a>
     <ul>
     <li><a href="#title-2">title 2</a></li>
     </ul>
+    </li>
     <li><a href="#title-1">title 1</a></li>
     </ul>
     HTML
