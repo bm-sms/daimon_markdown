@@ -19,6 +19,20 @@ module DaimonMarkdown
               node.replace(message)
             rescue DaimonMarkdown::Plugin::UnknownPluginError => ex
               node.replace(ex.message)
+            rescue DaimonMarkdown::Plugin::Error => ex
+              message = <<~MESSAGE
+              <pre>Error occured in #{plugin_class}
+              #{node} (#{ex.class}: #{ex.message})
+              #{ex.backtrace.join("\n")}</pre>
+              MESSAGE
+              node.parent.replace(message)
+            rescue => ex
+              message = <<~MESSAGE
+              <pre>Unexpected error occured in #{plugin_class}
+              #{node} (#{ex.class}: #{ex.message})
+              #{ex.backtrace.join("\n")}</pre>
+              MESSAGE
+              node.parent.replace(message)
             end
           end
           unless result[:plugins].empty?
