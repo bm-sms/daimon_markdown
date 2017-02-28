@@ -22,12 +22,16 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+For example, in your Rails application:
 
 ```ruby
-processor = DaimonMarkdown::Processor.new
-result = processor.call(input)
-puts result[:output].to_s
+module MarkdownHelper
+  def render_markdown(markdown_text, context = {})
+    processor = DaimonMarkdown::Processor.new(context)
+    result = processor.call(markdown_text)
+    puts result[:output].to_s.html_safe
+  end
+end
 ```
 
 ## How to write plugin
